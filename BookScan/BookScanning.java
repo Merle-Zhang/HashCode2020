@@ -91,15 +91,16 @@ public class BookScanning {
                 continue;
             }
             day -= library.signup;
-            int numBook = day / library.speed;
+            int numBook = day * library.speed;
             if (numBook <= 0) {
                 libraries.remove(0);
                 continue;
             }
             // System.out.println(library.id + " " + library.books.size());
+            numBook = Math.min(numBook, library.books.size());
             builder.append(library.id + " " + numBook + "\n");
             Collections.sort(library.books, Collections.reverseOrder());
-            for (int i = 0; i < numBook && i < library.books.size(); i++) {
+            for (int i = 0; i < numBook; i++) {
                 Book book = library.books.get(i);
                 scannedBook.add(book);
                 // System.out.print(book.id + " ");

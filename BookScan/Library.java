@@ -38,25 +38,25 @@ public class Library implements Comparable<Library> {
         return scoresum() / signup;
     }
 
-    int calF() {
-        int sum = 0;
+    // int calF() {
+    //     int sum = 0;
 
-        for (int i = 0; i < books.size() / 2; i++) {
-            sum += books.get(i).score;
-        }
-        if (books.size() / 2 == 0) {
-            return sum;
-        }
-        return sum / (books.size() / 2);
-    }
+    //     for (int i = 0; i < books.size() / 2; i++) {
+    //         sum += books.get(i).score;
+    //     }
+    //     if (books.size() / 2 == 0) {
+    //         return sum;
+    //     }
+    //     return sum / (books.size() / 2);
+    // }
     
     // int calculateLibScore(HashSet<Book> set) {
     //     libScore =  scoresum(set) / signup;
     // }
     
     public int compareTo(Library m) {
-        return this.calF() - m.calF();
-        // return this.calculate() - m.calculate();
+        // return this.calF() - m.calF();
+        return this.calculate() - m.calculate();
         // return this.libScore - m.libScore;
     }
     

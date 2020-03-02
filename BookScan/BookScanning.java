@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Collections;
 import java.util.Arrays;
 import java.util.Collection;
-
+import java.lang.StringBuilder;
 
 public class BookScanning {
     public static void main(String[] args) {
@@ -50,22 +50,29 @@ public class BookScanning {
 
         Collections.sort(libraries, Collections.reverseOrder());
 
-        System.out.println(libraries.size());
+        // System.out.println(libraries.size());
+        StringBuilder builder = new StringBuilder();
         HashSet<Book> scannedBook = new HashSet<Book>();
+        int libsize = 0;
         for (Library library : libraries) {
             library.removedup(scannedBook);
             if (library.books.size() == 0) {
                 continue;
             }
-            System.out.println(library.id + " " + library.books.size());
+            // System.out.println(library.id + " " + library.books.size());
+            builder.append(library.id + " " + library.books.size() + "\n");
             Collections.sort(library.books, Collections.reverseOrder());
             for (Book book : library.books) {
                 scannedBook.add(book);
-                System.out.print(book.id + " ");
+                // System.out.print(book.id + " ");
+                builder.append(book.id + " ");
             }
-            System.out.println();
+            // System.out.println();
+            builder.append("\n");
+            libsize++;
         }
-
+        builder.insert(0, libsize + "\n");
+        System.out.println(builder);
     }
     
     

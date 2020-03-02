@@ -48,21 +48,55 @@ public class BookScanning {
         // System.out.println(Arrays.toString(books.toArray()));
         // System.out.println(Arrays.toString(libraries.toArray()));
 
+        // Collections.sort(libraries, Collections.reverseOrder());
+
+        // // System.out.println(libraries.size());
+        // StringBuilder builder = new StringBuilder();
+        // HashSet<Book> scannedBook = new HashSet<Book>();
+        // int libsize = 0;
+        // for (Library library : libraries) {
+        //     library.removedup(scannedBook);
+        //     if (library.books.size() == 0) {
+        //         continue;
+        //     }
+        //     // System.out.println(library.id + " " + library.books.size());
+        //     builder.append(library.id + " " + library.books.size() + "\n");
+        //     Collections.sort(library.books, Collections.reverseOrder());
+        //     for (Book book : library.books) {
+        //         scannedBook.add(book);
+        //         // System.out.print(book.id + " ");
+        //         builder.append(book.id + " ");
+        //     }
+        //     // System.out.println();
+        //     builder.append("\n");
+        //     libsize++;
+        // }
+        // builder.insert(0, libsize + "\n");
+        // System.out.println(builder);
+
+
+        
         Collections.sort(libraries, Collections.reverseOrder());
 
         // System.out.println(libraries.size());
         StringBuilder builder = new StringBuilder();
         HashSet<Book> scannedBook = new HashSet<Book>();
+        int day = dayNum;
         int libsize = 0;
-        for (Library library : libraries) {
+        while (libraries.size() > 0 && day > 0) {
+            Library library = libraries.get(0);
             library.removedup(scannedBook);
             if (library.books.size() == 0) {
+                libraries.remove(0);
                 continue;
             }
+            day -= library.signup;
+            int numBook = day / library.speed;
             // System.out.println(library.id + " " + library.books.size());
-            builder.append(library.id + " " + library.books.size() + "\n");
+            builder.append(library.id + " " + numBook + "\n");
             Collections.sort(library.books, Collections.reverseOrder());
-            for (Book book : library.books) {
+            for (int i = 0; i < numBook && i < library.books.size(); i++) {
+                Book book = library.books.get(i);
                 scannedBook.add(book);
                 // System.out.print(book.id + " ");
                 builder.append(book.id + " ");
@@ -70,6 +104,8 @@ public class BookScanning {
             // System.out.println();
             builder.append("\n");
             libsize++;
+            libraries.remove(0);
+            Collections.sort(libraries, Collections.reverseOrder());
         }
         builder.insert(0, libsize + "\n");
         System.out.println(builder);

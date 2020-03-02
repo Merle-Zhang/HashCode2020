@@ -7,6 +7,7 @@ public class Library implements Comparable<Library> {
     int signup;
     int speed;
     ArrayList<Book> books;
+    int libScore;
 
     public Library(int id, int numBook, int signup, int speed) {
         this.id = id;
@@ -15,20 +16,35 @@ public class Library implements Comparable<Library> {
         this.speed = speed;
     }
 
+    // int scoresum() {
+    //     int sum = 0;
+    //     for (Book book : books) {
+    //         sum += book.score;
+    //     }
+    //     return sum;
+    // }
+
     int scoresum() {
         int sum = 0;
         for (Book book : books) {
-            sum += book.score;
+            if (!book.scanned) {
+                sum += book.score;
+            }
         }
         return sum;
     }
 
     int calculate() {
-        return scoresum()/signup/speed;
+        return scoresum() / signup;
     }
+    
+    // int calculateLibScore(HashSet<Book> set) {
+    //     libScore =  scoresum(set) / signup;
+    // }
     
     public int compareTo(Library m) {
         return this.calculate() - m.calculate();
+        // return this.libScore - m.libScore;
     }
     
     public void removedup(HashSet<Book> scannedBook) {

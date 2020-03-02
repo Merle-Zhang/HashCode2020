@@ -2,6 +2,8 @@ public class Book implements Comparable<Book> {
     int id;
     int score;
 
+    Boolean scanned = false;
+
     public Book(int id, int score) {
         this.id = id;
         this.score = score;

@@ -7,7 +7,6 @@ public class Library implements Comparable<Library> {
     int signup;
     int speed;
     ArrayList<Book> books;
-    int libScore;
 
     public Library(int id, int numBook, int signup, int speed) {
         this.id = id;
@@ -19,15 +18,13 @@ public class Library implements Comparable<Library> {
     int scoresum() {
         int sum = 0;
         for (Book book : books) {
-            if (!book.scanned) {
-                sum += book.score;
-            }
+            sum += book.score;
         }
         return sum;
     }
 
     int calculate() {
-        return scoresum() / signup;
+        return scoresum()/signup;
     }
     
     public int compareTo(Library m) {

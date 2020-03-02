@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Library implements Comparable<Library> {
 
@@ -30,7 +31,15 @@ public class Library implements Comparable<Library> {
         return this.calculate() - m.calculate();
     }
     
-    
+    public void removedup(HashSet<Book> scannedBook) {
+        for (int i = 0; i < books.size(); i++) {
+            if (scannedBook.contains(books.get(i))) {
+                books.remove(i);
+                i--;
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "LibID: " + id + "\nSignup: " + signup + "\nSpeed: " + speed + "\nNumber of Books: " + books.size();

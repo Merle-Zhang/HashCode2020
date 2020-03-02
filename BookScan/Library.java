@@ -24,7 +24,7 @@ public class Library implements Comparable<Library> {
     }
 
     int calculate() {
-        return scoresum()/signup;
+        return scoresum()/signup/speed;
     }
     
     public int compareTo(Library m) {

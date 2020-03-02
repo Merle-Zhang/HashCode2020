@@ -54,6 +54,9 @@ public class BookScanning {
         HashSet<Book> scannedBook = new HashSet<Book>();
         for (Library library : libraries) {
             library.removedup(scannedBook);
+            if (library.books.size() == 0) {
+                continue;
+            }
             System.out.println(library.id + " " + library.books.size());
             Collections.sort(library.books, Collections.reverseOrder());
             for (Book book : library.books) {

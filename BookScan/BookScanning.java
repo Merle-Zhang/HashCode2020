@@ -7,8 +7,6 @@ import java.util.Arrays;
 import java.util.Collection;
 
 
-
-
 public class BookScanning {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -50,14 +48,18 @@ public class BookScanning {
         // System.out.println(Arrays.toString(books.toArray()));
         // System.out.println(Arrays.toString(libraries.toArray()));
 
-        Collections.sort(libraries);
+        Collections.sort(libraries, Collections.reverseOrder());
 
         System.out.println(libraries.size());
+        HashSet<Book> scannedBook = new HashSet<Book>();
         for (Library library : libraries) {
             System.out.println(library.id + " " + library.books.size());
-            Collections.sort(library.books);
+            Collections.sort(library.books, Collections.reverseOrder());
             for (Book book : library.books) {
-                System.out.print(book.id + " ");
+                if (!scannedBook.contains(book)) {
+                    System.out.print(book.id + " ");
+                    scannedBook.add(book);
+                }
             }
             System.out.println();
         }

@@ -14,8 +14,20 @@ public class Library implements Comparable<Library> {
         this.speed = speed;
     }
 
+    int scoresum() {
+        int sum = 0;
+        for (Book book : books) {
+            sum += book.score;
+        }
+        return sum;
+    }
+
+    int calculate() {
+        return scoresum()/signup;
+    }
+    
     public int compareTo(Library m) {
-        return this.signup - m.signup;
+        return this.calculate() - m.calculate();
     }
     
     

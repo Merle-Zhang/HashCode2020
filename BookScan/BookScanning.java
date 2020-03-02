@@ -92,6 +92,10 @@ public class BookScanning {
             }
             day -= library.signup;
             int numBook = day / library.speed;
+            if (numBook <= 0) {
+                libraries.remove(0);
+                continue;
+            }
             // System.out.println(library.id + " " + library.books.size());
             builder.append(library.id + " " + numBook + "\n");
             Collections.sort(library.books, Collections.reverseOrder());

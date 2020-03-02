@@ -57,6 +57,7 @@ public class BookScanning {
             System.out.println(library.id + " " + library.books.size());
             Collections.sort(library.books, Collections.reverseOrder());
             for (Book book : library.books) {
+                scannedBook.add(book);
                 System.out.print(book.id + " ");
             }
             System.out.println();
